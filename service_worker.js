@@ -4,10 +4,10 @@ const CACHE_NAME = "v1-gamingwebsite";
 const urlsToCache = [
   "/gamingwebsite/", // root
   "/gamingwebsite/index.html",
-  "/gamingwebsite/styles.css",     // replace with your actual CSS file
-  "/gamingwebsite/script.js",      // replace with your actual JS file
-  "/gamingwebsite/logo.png",       // any images you use
-  // Add more assets as needed
+  "/gamingwebsite/styles.css",    
+  "/gamingwebsite/script.js",      
+  "/gamingwebsite/logo.png",       
+  
 ];
 
 self.addEventListener("install", (event) => {
