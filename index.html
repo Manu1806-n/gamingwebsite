@@ -417,6 +417,20 @@ https://templatemo.com/tm-589-lugx-gaming
   <script src="assets/js/owl-carousel.js"></script>
   <script src="assets/js/counter.js"></script>
   <script src="assets/js/custom.js"></script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/gamingwebsite/service-worker.js")
+        .then((reg) => {
+          console.log("Service Worker registered: ", reg.scope);
+        })
+        .catch((err) => {
+          console.error("Service Worker registration failed: ", err);
+        });
+    });
+  }
+</script>
 
   </body>
 </html>
