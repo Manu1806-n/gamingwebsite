@@ -431,6 +431,49 @@ https://templatemo.com/tm-589-lugx-gaming
     });
   }
 </script>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/gamingwebsite/service-worker.js").then((registration) => {
+      console.log("SW registered: ", registration);
+
+      // Listen for updates
+      registration.onupdatefound = () => {
+        const newSW = registration.installing;
+        newSW.onstatechange = () => {
+          if (newSW.state === "installed") {
+            if (navigator.serviceWorker.controller) {
+              // New content is available
+              showUpdateNotification();
+            }
+          }
+        };
+      };
+    }).catch((err) => {
+      console.log("SW registration failed: ", err);
+    });
+  });
+}
+
+function showUpdateNotification() {
+  const banner = document.createElement("div");
+  banner.innerHTML = `
+    <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+                background: #333; color: white; padding: 10px 20px; border-radius: 8px;
+                z-index: 9999; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+      🔄 New update available.
+      <button style="margin-left: 10px; background: #0f0; color: black; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+        Refresh
+      </button>
+    </div>
+  `;
+  document.body.appendChild(banner);
+
+  banner.querySelector("button").addEventListener("click", () => {
+    window.location.reload(); // Refresh to activate new SW
+  });
+}
+</script>
 
   </body>
 </html>
