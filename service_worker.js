@@ -45,3 +45,24 @@ self.addEventListener("activate", (event) => {
     )
   );
 });
+
+self.addEventListener("install", (event) => {
+  self.skipWaiting(); // 🚨 Forces activation after install
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    (async () => {
+      const cacheWhitelist = [CACHE_NAME];
+      const cacheNames = await caches.keys();
+      await Promise.all(
+        cacheNames.map((cacheName) => {
+          if (!cacheWhitelist.includes(cacheName)) {
+            return caches.delete(cacheName); // Delete old cache
+          }
+        })
+      );
+      self.clients.claim(); // 🚀 Take control of clients immediately
+    })()
+  );
+});
