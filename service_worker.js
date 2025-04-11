@@ -1,6 +1,6 @@
 // service-worker.js
 
-const CACHE_NAME = "v1-gamingwebsite";
+const CACHE_NAME = "v2-gamingwebsite";
 const urlsToCache = [
   "/gamingwebsite/", // root
   "/gamingwebsite/index.html",
